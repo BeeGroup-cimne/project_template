@@ -1,0 +1,30 @@
+{
+  "paths": {
+    "all": "/tmp/edinet_baseline/{UUID}",
+    "measures": "/tmp/edinet_baseline/{UUID}/measures",
+    "joined": "/tmp/edinet_baseline/{UUID}/joined"
+  },
+  "mongodb":{
+    "modelling_units_collection" : "modelling_units",
+    "building_collection": "buildings",
+    "collection": "baselines",
+    "weather_collection": "stations_measures",
+    "reporting_collection": "reporting_units"
+  },
+  "hbase_table": {
+    "name": "",
+    "key": [
+      "bucket",
+      "timestamp",
+      "deviceId"
+    ],
+    "cf": [
+      {
+        "fields": [
+          "v"
+        ],
+        "name": "m"
+      }
+    ]
+  }
+}

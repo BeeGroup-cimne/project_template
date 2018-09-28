@@ -1,0 +1,34 @@
+{
+	"mongodb" : {
+		"host": "hostname",
+		"port": 1234,
+		"username": "username",
+		"password": "password",
+		"db": "database"
+	},
+	"hdfs" : {
+		"host": "hostname",
+		"port": 1234
+	},
+	"hive" : {
+		"host": "hostname",
+		"port": 1234,
+		"username": "username"
+	},
+	"hbase" : {
+		"host": "hostname",
+		"port": 1234
+	},
+	"report": {
+		"collection": "module_task_reports",
+		"etl_collection": "etl_task_reports",
+		"timeline_collection": "etl_automatic_launch_timeline"
+	},
+	"config_execution": {
+		"path": "tmp_path/config_execution",
+		"tertiary_periods" : "tertiary_periods",
+		"tou_periods": "tou_periods",
+		"last_contracts_ETL": "last_execution_contracts_ETL",
+		"streaming_jar": "/usr/lib/hadoop/hadoop-streaming.jar"
+	}
+}

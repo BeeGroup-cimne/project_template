@@ -1,0 +1,8 @@
+config.json
+general_variables.sh
+module_variables.sh
+/tasks.py
+launcher.py
+mrjob.conf
+!.modules_config_files/launcher.py
+!.modules_config_files/mrjob.conf
