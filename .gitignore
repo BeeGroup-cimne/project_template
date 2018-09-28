@@ -4,5 +4,7 @@ module_variables.sh
 /tasks.py
 launcher.py
 mrjob.conf
+.DS_Store
+.idea/
 !.modules_config_files/launcher.py
 !.modules_config_files/mrjob.conf
