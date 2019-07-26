@@ -7,6 +7,7 @@
 2- Delete the `.git` folder of the template project and start a new git for the project
 ```bash
 rm -rf .git
+git init
 ```
 3- Set the `config.json` with the proper configuration
 ```json
@@ -58,7 +59,7 @@ export cert=/path/to/devpi/certificate.pem
 
 ```
 
-5- Copy and edit the example module folder `module_template`
+5- Copy and edit the example module folder `_module_template`. If some common libraries has to be included in the project, they can be included in a folder starting with "_" and then setting it's path to the `python_path` config variable.
 
 6- Write the code of the new module. All mapreduce required files must be in the same folder or installed in the virtualenv through the `requirements.txt` file
 
@@ -70,16 +71,33 @@ export cert=/path/to/devpi/certificate.pem
 
 . ../general_variables.sh
 # name of exec file of module
-task_exec_file=task.py
+task_exec_file=<task file executable>
 
 # module name
-task_name=edinet_baseline
+task_name=<name of the module(dir name)>
+
+#python to use
+python_v=<python executable>
+
+#pythonpath to add (list)
+# If an external folder outside the module has to be included in the mrjob
+# all folders in te project that are not modules must start with _
+python_path=(
+    <path_to_add_1>
+    <path_to_add_2>
+)
+
+# export variables
+# If some environtments variables are needed for the execution: EX: R_HOME for rpy2
+to_export=(
+    <variable_to_add>=<value>
+)
 
 # celery queue to add this task
-queue=modules
+queue=<queue: (etl, module)>
 
 #whether the virtualenv should be (re)installed each execution or not
-debug=0
+debug=<(0,1)>
 
 #current dir path
 pwd=`pwd`

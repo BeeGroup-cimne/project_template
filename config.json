@@ -20,9 +20,9 @@
 		"port": 1234
 	},
 	"report": {
-		"collection": "module_task_reports",
-		"etl_collection": "etl_task_reports",
-		"timeline_collection": "etl_automatic_launch_timeline"
+		"collection": "config1",
+		"etl_collection": "config1",
+		"timeline_collection": "config1"
 	},
 	"config_execution": {
 		"path": "tmp_path/config_execution",

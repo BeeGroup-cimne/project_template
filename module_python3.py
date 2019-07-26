@@ -9,12 +9,12 @@ from snakebite.client import Client as snakeBiteClient
 # HBase libs
 import happybase
 # HIVE imports
-import pyhs2
+from pyhive import hive as hive_connection
 from hive_functions import delete_hive_table
 import logging
 
 
-class BeeModule2(object):
+class BeeModule3(object):
     def __init__(self, module_name, **kwargs):
         self.task_UUID = str(uuid.uuid4()).replace("-","")
         self.module_name = module_name
@@ -70,8 +70,8 @@ class BeeModule2(object):
                 if isinstance(v, dict):
                     self._replace_dict(v, **kwargs)
                 elif isinstance(v, list):
-                    dict_replace[k] = [x.format(**kwargs) if isinstance(x,str) else x for x in v]
-                elif isinstance(v, str) or isinstance(v, unicode):
+                    dict_replace[k] = [x.format(**kwargs) if isinstance(x,str) or isinstance(x, bytes) else x for x in v]
+                elif isinstance(v, bytes) or isinstance(v, str):
                     dict_replace[k] = v.format(**kwargs)
             except Exception as e:
                 raise Exception(k)
@@ -86,9 +86,9 @@ class BeeModule2(object):
         return mongo ,mongo[self.config['mongodb']['db']]
 
     def _set_hive(self):
-        hive = pyhs2.connect(host=self.config['hive']['host'],
+        hive = hive_connection.connect(host=self.config['hive']['host'],
                              port=int(self.config['hive']['port']),
-                             authMechanism='PLAIN', user=self.config['hive']['username'], password="")
+                             username=self.config['hive']['username'])
         return hive.cursor()
 
     def _set_hdfs(self):
@@ -138,6 +138,7 @@ class BeeModule2(object):
         self.hdfs = self._set_hdfs()
         self.hbase = self._set_hbase()
         self.report.start(params)
+        self.logger.info("Done")
 
     def _finish_task(self):
         self._cleanup_temp_data(recurse=True)
